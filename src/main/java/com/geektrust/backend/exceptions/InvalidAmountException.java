@@ -9,6 +9,5 @@ public class InvalidAmountException extends IOException {
 
     public InvalidAmountException() {
         super();
-    }
-      
+    }    
 }

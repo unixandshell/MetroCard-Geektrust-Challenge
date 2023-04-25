@@ -49,8 +49,7 @@ public class MetroCardTest {
 
     @Test
     @DisplayName("deductAmount method should throw InvalidAmountException if the given amount is less than or equal to zero OR greater than the balance of MetroCard ")
-    public void deductAmount_shouldThrowInvalidAmountException_GivenInvalidAmount()
-    {
+    public void deductAmount_shouldThrowInvalidAmountException_GivenInvalidAmount() {
         //Arrange
         MetroCard metroCard = new MetroCard("MC1", 200);
 
@@ -60,8 +59,7 @@ public class MetroCardTest {
 
     @Test
     @DisplayName("hasSufficientBalance method should return true if the given amount is less than or equal to the balance of MetroCard")
-    public void hasSufficientBalance_shouldReturnTrue_GivenAmount()
-    {
+    public void hasSufficientBalance_shouldReturnTrue_GivenAmount() {
         //Arrange
         MetroCard metroCard = new MetroCard("MC1", 200);
 
@@ -71,8 +69,7 @@ public class MetroCardTest {
 
     @Test
     @DisplayName("hasSufficientBalance method should return false if the given amount is greater than the balance of MetroCard")
-    public void hasSufficientBalance_shouldReturnFalse_GivenAmount()
-    {
+    public void hasSufficientBalance_shouldReturnFalse_GivenAmount() {
         //Arrange
         MetroCard metroCard = new MetroCard("MC1", 200);
 

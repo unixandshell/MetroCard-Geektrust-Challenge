@@ -23,7 +23,6 @@ public class App {
             while (line != null) {
                 List<String> tokens = Arrays.asList(line.split(" "));
                 commandInvoker.executeCommand(tokens.get(0),tokens);
-                // read next line
                 line = reader.readLine();
             }
             reader.close();
@@ -31,5 +30,4 @@ public class App {
             e.printStackTrace();
         }
 	}
-
 }

@@ -13,8 +13,7 @@ public class StationRepositoryImplTest {
     private StationRepository stationRepository;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         Map<String, Station> stationMap = new HashMap<>();
         stationMap.put("1", new Station("1", "CENTRAL"));
 
@@ -23,8 +22,7 @@ public class StationRepositoryImplTest {
 
     @Test
     @DisplayName("save method should create and return new Station")
-    public void saveStation()
-    {
+    public void saveStation() {
         //Arrange
         Station station2 = new Station("AIRPORT");
         Station expectedStation = new Station("2", "AIRPORT");
@@ -38,8 +36,7 @@ public class StationRepositoryImplTest {
 
     @Test
     @DisplayName("findByName method should return Station given station name")
-    public void findByName_shouldReturnStation_givenName()
-    {
+    public void findByName_shouldReturnStation_givenName() {
         //Arrange 
         Station expectedStation = new Station("1", "CENTRAL");
 
@@ -52,8 +49,7 @@ public class StationRepositoryImplTest {
 
     @Test
     @DisplayName("findByName method should return empty if the given station name is not found")
-    public void findByName_shouldReturnEmpty_IfNameNotFound()
-    {
+    public void findByName_shouldReturnEmpty_IfNameNotFound() {
         //Arrange 
         Optional<Station> expectedStation = Optional.empty();
 
@@ -66,8 +62,7 @@ public class StationRepositoryImplTest {
 
     @Test
     @DisplayName("findAll method should return all Station")
-    public void findAllStation()
-    {
+    public void findAllStation() {
         //Arrange
         int expectedCount = 2;
         Station station2 = new Station("AIRPORT");

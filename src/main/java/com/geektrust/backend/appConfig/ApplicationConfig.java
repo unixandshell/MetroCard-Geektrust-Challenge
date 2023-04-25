@@ -18,19 +18,19 @@ import com.geektrust.backend.services.StationService;
 import com.geektrust.backend.services.StationServiceImpl;
 
 public class ApplicationConfig {
-    private MetroCardRepository metroCardRepository = new MetroCardRepositoryImpl();
-    private PassengerRepository passengerRepository = new PassengerRepositoryImpl();
-    private StationRepository stationRepository = new StationRepositoryImpl();
+    private final MetroCardRepository metroCardRepository = new MetroCardRepositoryImpl();
+    private final PassengerRepository passengerRepository = new PassengerRepositoryImpl();
+    private final StationRepository stationRepository = new StationRepositoryImpl();
 
-    private StationService stationService = new StationServiceImpl(stationRepository);
-    private MetroCardService metroCardService = new MetroCardServiceImpl(stationService, metroCardRepository);
-    private PassengerService passengerService = new PassengerServiceImpl(stationService, metroCardService, metroCardRepository, passengerRepository);
+    private final StationService stationService = new StationServiceImpl(stationRepository);
+    private final MetroCardService metroCardService = new MetroCardServiceImpl(stationService, metroCardRepository);
+    private final PassengerService passengerService = new PassengerServiceImpl(stationService, metroCardService, metroCardRepository, passengerRepository);
 
-    private BalanceCommand balanceCommand = new BalanceCommand(metroCardService);
-    private CheckInCommand checkInCommand = new CheckInCommand(passengerService, stationService);
-    private PrintSummaryCommand printSummaryCommand = new PrintSummaryCommand(stationService);
+    private final BalanceCommand balanceCommand = new BalanceCommand(metroCardService);
+    private final CheckInCommand checkInCommand = new CheckInCommand(passengerService, stationService);
+    private final PrintSummaryCommand printSummaryCommand = new PrintSummaryCommand(stationService);
 
-    private CommandInvoker commandInvoker = new CommandInvoker();
+    private final CommandInvoker commandInvoker = new CommandInvoker();
 
     public CommandInvoker getCommandInvoker() {
         commandInvoker.register("BALANCE", balanceCommand);

@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 public class StationTest {
     @Test
     @DisplayName("addTravelCharge method should add the given travel charge to the travel charge collection of station")
-    public void addTravelCharge_shouldAddTravelCharge_toTravelChargeCollection()
-    {
+    public void addTravelCharge_shouldAddTravelCharge_toTravelChargeCollection() {
         //Arrange 
         int expectedTravelChargeCollection = 200;
         Station station = new Station("1", "AIRPORT");
@@ -23,8 +22,7 @@ public class StationTest {
 
     @Test
     @DisplayName("addServiceFee method should add the given service fee to the service fee collection of station")
-    public void addServiceFee_shouldAddServiceFee_toServiceFeeCollection()
-    {
+    public void addServiceFee_shouldAddServiceFee_toServiceFeeCollection() {
         //Arrange 
         int expectedServiceFeeCollection = 100;
         Station station = new Station("1", "AIRPORT");
@@ -39,8 +37,7 @@ public class StationTest {
 
     @Test
     @DisplayName("addDiscount method should add the given discount to the discount collection of station")
-    public void addDiscount_shouldAddDiscount_toDiscountCollection()
-    {
+    public void addDiscount_shouldAddDiscount_toDiscountCollection() {
         //Arrange 
         int expectedDiscountCollection = 300;
         Station station = new Station("1", "AIRPORT");
@@ -55,8 +52,7 @@ public class StationTest {
 
     @Test
     @DisplayName("addPassenger method should add the given passenger to the boardedPassengers list of station")
-    public void addPassenger_shouldAddPassenger()
-    {
+    public void addPassenger_shouldAddPassenger() {
         //Arrange
         int expectedCount = 1;
         MetroCard metroCard = new MetroCard("1", "MC1", 100);
@@ -73,8 +69,7 @@ public class StationTest {
 
     @Test
     @DisplayName("getTotalCollection method should return the sum of travelChargeCollection and serviceFeeCollection")
-    public void getTotalCollection_shouldReturnTotalCollection()
-    {
+    public void getTotalCollection_shouldReturnTotalCollection() {
         //Arrange
         int expectedTotalCollection = 500;
         Station station = new Station("1", "AIRPORT");

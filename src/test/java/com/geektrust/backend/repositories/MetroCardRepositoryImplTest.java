@@ -13,8 +13,7 @@ public class MetroCardRepositoryImplTest {
     private MetroCardRepository metroCardRepository;
     
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         Map<String, MetroCard> metroCardMap = new HashMap<>();
         metroCardMap.put("1", new MetroCard("1", "MC1", 100));
         metroCardMap.put("2", new MetroCard("2", "MC2", 200));
@@ -25,8 +24,7 @@ public class MetroCardRepositoryImplTest {
 
     @Test
     @DisplayName("save method should create and return new MetroCard")
-    public void saveMetroCard()
-    {
+    public void saveMetroCard() {
         //Arrange
         MetroCard metroCard4 = new MetroCard("MC4", 400);
         MetroCard expectedMetroCard = new MetroCard("4", "MC4", 400);
@@ -40,8 +38,7 @@ public class MetroCardRepositoryImplTest {
 
     @Test
     @DisplayName("findByCardNumber method should return MetroCard given cardNumber")
-    public void findByCardNumber_shouldReturnMetroCard_givenCardNumber()
-    {
+    public void findByCardNumber_shouldReturnMetroCard_givenCardNumber() {
         //Arrange
         MetroCard expectedMetroCard = new MetroCard("2", "MC2", 200);
 
@@ -54,8 +51,7 @@ public class MetroCardRepositoryImplTest {
 
     @Test
     @DisplayName("findByCardNumber method should return empty if the given cardNumber is not found")
-    public void findByCardNumber_shouldReturnEmpty_IfCardNumberNotFound()
-    {
+    public void findByCardNumber_shouldReturnEmpty_IfCardNumberNotFound() {
         //Arrange
         Optional<MetroCard> expectedMetroCard = Optional.empty();
 

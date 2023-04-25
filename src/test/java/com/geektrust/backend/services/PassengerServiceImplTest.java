@@ -45,16 +45,14 @@ public class PassengerServiceImplTest {
     private PassengerServiceImpl passengerServiceImpl;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         metroCard = new MetroCard("1", "MC1", 100);
         passenger = new Passenger(metroCard, PassengerType.ADULT, "AIRPORT");
     }
 
     @Test
     @DisplayName("create method should create and return new Passenger if it's not present in database")
-    public void create_shouldReturnNewPassenger_IfNotPresent() throws MetroCardNotFoundException
-    {
+    public void create_shouldReturnNewPassenger_IfNotPresent() throws MetroCardNotFoundException {
         //Arrange
         Passenger expectedPassenger = new Passenger("1", metroCard, PassengerType.ADULT, "AIRPORT");
         when(metroCardRepositoryMock.findByCardNumber("MC1")).thenReturn(Optional.ofNullable(metroCard));
@@ -73,8 +71,7 @@ public class PassengerServiceImplTest {
 
     @Test
     @DisplayName("create method should return the existing Passenger by updating the boarding station if it's already present in database")
-    public void create_shouldReturnExistingPassenger_IfAlreadyPresent() throws MetroCardNotFoundException
-    {
+    public void create_shouldReturnExistingPassenger_IfAlreadyPresent() throws MetroCardNotFoundException {
         //Arrange
         Passenger passenger1 = new Passenger("1", metroCard, PassengerType.ADULT, "AIRPORT");
         Passenger expectedPassenger = new Passenger("1", metroCard, PassengerType.ADULT, "CENTRAL");
@@ -93,8 +90,7 @@ public class PassengerServiceImplTest {
 
     @Test
     @DisplayName("create method should throw MetroCardNotFoundException if the MetroCard is not found")
-    public void create_shouldThrowMetroCardNotFoundException()
-    {
+    public void create_shouldThrowMetroCardNotFoundException() {
         //Arrange
         when(metroCardRepositoryMock.findByCardNumber("MC3")).thenReturn(Optional.empty());
 
@@ -107,8 +103,7 @@ public class PassengerServiceImplTest {
 
     @Test
     @DisplayName("travel method should get the travel charge of the journey and make the payment if there is sufficient balance in the MetroCard and add the Passenger to the boarded list of station")
-    public void travel_makePayment_IfSufficientBalance() throws InvalidAmountException, StationNotFoundException
-    {
+    public void travel_makePayment_IfSufficientBalance() throws InvalidAmountException, StationNotFoundException {
         //Arrange
         Passenger passenger1 = new Passenger("1", metroCard, PassengerType.KID, "AIRPORT");
         when(stationServiceMock.getTravelCharge(passenger1)).thenReturn(50);
@@ -125,8 +120,7 @@ public class PassengerServiceImplTest {
 
     @Test
     @DisplayName("travel method should get the travel charge of the journey and make the payment after recharging the MetroCard if there is no sufficient balance in MetroCard and add the Passenger to the boarded list of station")
-    public void travel_rechargeMetroCardAndMakePayment_IfNoSufficientBalance() throws InvalidAmountException, StationNotFoundException
-    {
+    public void travel_rechargeMetroCardAndMakePayment_IfNoSufficientBalance() throws InvalidAmountException, StationNotFoundException {
         //Arrange
         Passenger passenger1 = new Passenger("1", metroCard, PassengerType.ADULT, "AIRPORT");
         when(stationServiceMock.getTravelCharge(passenger1)).thenReturn(200);

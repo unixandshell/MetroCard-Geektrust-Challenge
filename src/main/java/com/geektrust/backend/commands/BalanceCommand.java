@@ -4,7 +4,7 @@ import java.util.List;
 import com.geektrust.backend.services.MetroCardService;
 
 public class BalanceCommand implements ICommand {
-    private MetroCardService metroCardService;
+    private final MetroCardService metroCardService;
 
     public BalanceCommand(MetroCardService metroCardService) {
         this.metroCardService = metroCardService;
@@ -15,6 +15,5 @@ public class BalanceCommand implements ICommand {
         String cardNumber = tokens.get(1);
         int balance = Integer.valueOf(tokens.get(2));
         metroCardService.create(cardNumber, balance);
-    }
-    
+    } 
 }

@@ -15,8 +15,7 @@ public class PassengerRepositoryImplTest {
     private PassengerRepository passengerRepository;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         Map<String, Passenger> passengerMap = new HashMap<>();
         MetroCard metroCard1 = new MetroCard("1", "MC1", 100);
         MetroCard metroCard2 = new MetroCard("2", "MC2", 200);
@@ -29,8 +28,7 @@ public class PassengerRepositoryImplTest {
 
     @Test
     @DisplayName("save method should create and return new Passenger")
-    public void savePassenger()
-    {
+    public void savePassenger() {
         //Arrange
         MetroCard metroCard3 = new MetroCard("3", "MC3", 300);
         Passenger passenger3 = new Passenger(metroCard3, PassengerType.ADULT, "CENTRAL");
@@ -45,8 +43,7 @@ public class PassengerRepositoryImplTest {
 
     @Test
     @DisplayName("findByMetroCard method should return Passenger given metroCard")
-    public void findByMetroCard_shouldReturnPassenger_givenMetroCard()
-    {
+    public void findByMetroCard_shouldReturnPassenger_givenMetroCard() {
         //Arrange
         MetroCard metroCard2 = new MetroCard("2", "MC2", 200);
         Passenger expectedPassenger = new Passenger("2", metroCard2, PassengerType.KID, "AIRPORT");
@@ -60,8 +57,7 @@ public class PassengerRepositoryImplTest {
 
     @Test
     @DisplayName("findByMetroCard method should return empty if the given metroCard is not found")
-    public void findByMetroCard_shouldReturnEmpty_IfMetroCardNotFound()
-    {
+    public void findByMetroCard_shouldReturnEmpty_IfMetroCardNotFound() {
         //Arrange
         MetroCard metroCard3 = new MetroCard("3", "MC3", 300);
         Optional<Passenger> expectedPassenger = Optional.empty();

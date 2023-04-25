@@ -8,8 +8,8 @@ import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.MetroCardRepository;
 
 public class MetroCardServiceImpl implements MetroCardService {
-    private StationService stationService;
-    private MetroCardRepository metroCardRepository;
+    private final StationService stationService;
+    private final MetroCardRepository metroCardRepository;
 
     public MetroCardServiceImpl(StationService stationService, MetroCardRepository metroCardRepository) {
         this.stationService = stationService;

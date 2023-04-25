@@ -2,8 +2,8 @@ package com.geektrust.backend.entities;
 
 public class Passenger {
     private String id;
-    private MetroCard metroCard;
-    private PassengerType passengerType;
+    private final MetroCard metroCard;
+    private final PassengerType passengerType;
     private String boardingStation;
     private int journeyTypeCode; // 0 indicates SINGLE, 1 indicates RETURN, -1 indicates NOT_STARTED
     private static final int TOTAL_STATION_COUNT = 2;
@@ -75,8 +75,7 @@ public class Passenger {
             return false;
 
         Passenger other = (Passenger) obj;
-        if(this.id == null)
-        {
+        if(this.id == null) {
             if(other.id != null)
                 return false;
             else if((this.metroCard.equals(other.metroCard)) && (this.passengerType.equals(other.passengerType)) && (this.boardingStation.equals(other.boardingStation)))
@@ -94,5 +93,4 @@ public class Passenger {
                 + passengerType + ", boardingStation='" + boardingStation + '\''
                 + ", journeyTypeCode=" + journeyTypeCode + '}';
     }
-
 }

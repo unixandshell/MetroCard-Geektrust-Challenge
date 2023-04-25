@@ -3,7 +3,7 @@ package com.geektrust.backend.dtos;
 import java.util.List;
 
 public class PassengerSummary {
-    private List<PassengerTypeCount> passengerTypeCounts;
+    private final List<PassengerTypeCount> passengerTypeCounts;
 
     public PassengerSummary(List<PassengerTypeCount> passengerTypeCounts) {
         this.passengerTypeCounts = passengerTypeCounts;

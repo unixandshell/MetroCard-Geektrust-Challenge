@@ -19,7 +19,7 @@ import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.StationRepository;
 
 public class StationServiceImpl implements StationService {
-    private StationRepository stationRepository;
+    private final StationRepository stationRepository;
 
     public StationServiceImpl(StationRepository stationRepository) {
         this.stationRepository = stationRepository;
@@ -42,21 +42,21 @@ public class StationServiceImpl implements StationService {
     @Override
     public void addPassengerToBoardedList(Passenger passenger) throws StationNotFoundException {
         String stationName = passenger.getBoardingStation();
-        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
+        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException("Station with name: " + stationName + " not found!"));
         station.addPassenger(new Passenger(passenger));
     }
 
     @Override
     public void collectTravelCharge(Passenger passenger, int travelCharge) throws StationNotFoundException {
         String stationName = passenger.getBoardingStation();
-        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
+        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException("Station with name: " + stationName + " not found!"));
         station.addTravelCharge(travelCharge);
     }
 
     @Override
     public void collectServiceFee(Passenger passenger, int rechargeAmount) throws StationNotFoundException {
         String stationName = passenger.getBoardingStation();
-        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
+        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException("Station with name: " + stationName + " not found!"));
         int serviceFee = calculateServiceFee(rechargeAmount);
         station.addServiceFee(serviceFee);
     }
@@ -162,8 +162,7 @@ public class StationServiceImpl implements StationService {
 
     private void collectDiscount(Passenger passenger, int discount) throws StationNotFoundException {
         String stationName = passenger.getBoardingStation();
-        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
+        Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException("Station with name: " + stationName + " not found!"));
         station.addDiscount(discount);
     }
-
 }

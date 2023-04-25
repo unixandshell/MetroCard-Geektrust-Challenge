@@ -4,7 +4,7 @@ import com.geektrust.backend.exceptions.InvalidAmountException;
 
 public class MetroCard {
     private String id;
-    private String cardNumber;
+    private final String cardNumber;
     private int balance;
 
     public MetroCard(String id, String cardNumber, int balance) {
@@ -48,12 +48,12 @@ public class MetroCard {
 
     private void validateAmountForCredit(int amount) throws InvalidAmountException {
         if (amount <= 0)
-            throw new InvalidAmountException();
+            throw new InvalidAmountException("Amount: " + amount + " is invalid. Please provide a valid amount!");
     }
 
     private void validateAmountForDebit(int amount) throws InvalidAmountException {
         if ((amount <= 0) || (amount > this.balance))
-            throw new InvalidAmountException();
+            throw new InvalidAmountException("Amount: " + amount + " is invalid. Please provide a valid amount!");
     }
 
     @Override
@@ -67,8 +67,7 @@ public class MetroCard {
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if(this == obj)
             return true;
         if(obj == null)
@@ -77,8 +76,7 @@ public class MetroCard {
             return false;
         
         MetroCard other = (MetroCard) obj;
-        if(this.id == null)
-        {
+        if(this.id == null) {
             if(other.id != null)
                 return false;
             else if((this.cardNumber.equals(other.cardNumber)) && (this.balance == other.balance))
@@ -98,6 +96,4 @@ public class MetroCard {
                 ", balance=" + balance +
                 '}';
     }
-
-    
 }

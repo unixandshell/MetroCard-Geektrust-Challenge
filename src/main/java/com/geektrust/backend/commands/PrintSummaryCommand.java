@@ -8,7 +8,7 @@ import com.geektrust.backend.entities.Station;
 import com.geektrust.backend.services.StationService;
 
 public class PrintSummaryCommand implements ICommand {
-    private StationService stationService;
+    private final StationService stationService;
 
     public PrintSummaryCommand(StationService stationService) {
         this.stationService = stationService;
@@ -32,5 +32,4 @@ public class PrintSummaryCommand implements ICommand {
         }
         
     }
-    
 }

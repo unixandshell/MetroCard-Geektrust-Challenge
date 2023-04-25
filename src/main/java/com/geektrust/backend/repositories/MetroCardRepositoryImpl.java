@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.geektrust.backend.entities.MetroCard;
 
 public class MetroCardRepositoryImpl implements MetroCardRepository {
-    private Map<String, MetroCard> metroCardMap;
+    private final Map<String, MetroCard> metroCardMap;
     private int autoIncrement = 0;
 
     public MetroCardRepositoryImpl(Map<String, MetroCard> metroCardMap) {
@@ -22,8 +22,7 @@ public class MetroCardRepositoryImpl implements MetroCardRepository {
 
     @Override
     public MetroCard save(MetroCard entity) {
-        if(entity.getId() == null)
-        {
+        if(entity.getId() == null) {
             autoIncrement++;
             MetroCard metroCard = new MetroCard(Integer.toString(autoIncrement), entity.getCardNumber(), entity.getBalance());
             metroCardMap.put(metroCard.getId(), metroCard);
@@ -44,5 +43,4 @@ public class MetroCardRepositoryImpl implements MetroCardRepository {
         }
         return Optional.ofNullable(null);
     }
-
 }

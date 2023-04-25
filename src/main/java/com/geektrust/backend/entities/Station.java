@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Station implements Comparable<Station> {
     private String id;
-    private String name;
-    private List<Passenger> boardedPassengers; //contains list of passengers boarded from the station
+    private final String name;
+    private final List<Passenger> boardedPassengers; //contains list of passengers boarded from the station
     private int travelChargeCollection;
     private int serviceFeeCollection;
     private int discountCollection;
@@ -19,6 +19,9 @@ public class Station implements Comparable<Station> {
     public Station(String name) {
         this.name = name;
         this.boardedPassengers = new ArrayList<>();
+        this.travelChargeCollection = 0;
+        this.serviceFeeCollection = 0;
+        this.discountCollection = 0;
     }
 
     public void addTravelCharge(int travelCharge) {
@@ -89,8 +92,7 @@ public class Station implements Comparable<Station> {
             return false;
 
         Station other = (Station) obj;
-        if(this.id == null)
-        {
+        if(this.id == null) {
             if(other.id != null)
                 return false;
             else if(this.name.equals(other.name))

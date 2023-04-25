@@ -9,8 +9,7 @@ import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 
 public class PassengerRepositoryImpl implements PassengerRepository {
-
-    private Map<String, Passenger> passengerMap;
+    private final Map<String, Passenger> passengerMap;
     private int autoIncrement = 0;
 
     public PassengerRepositoryImpl(Map<String, Passenger> passengerMap) {
@@ -24,8 +23,7 @@ public class PassengerRepositoryImpl implements PassengerRepository {
 
     @Override
     public Passenger save(Passenger entity) {
-        if(entity.getId() == null)
-        {
+        if(entity.getId() == null) {
             autoIncrement++;
             Passenger passenger = new Passenger(Integer.toString(autoIncrement), entity.getMetroCard(), entity.getPassengerType(), entity.getBoardingStation());
             passengerMap.put(passenger.getId(), passenger);

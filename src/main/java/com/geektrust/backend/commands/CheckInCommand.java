@@ -10,8 +10,8 @@ import com.geektrust.backend.services.PassengerService;
 import com.geektrust.backend.services.StationService;
 
 public class CheckInCommand implements ICommand {
-    private PassengerService passengerService;
-    private StationService stationService;
+    private final PassengerService passengerService;
+    private final StationService stationService;
 
     public CheckInCommand(PassengerService passengerService, StationService stationService) {
         this.passengerService = passengerService;
@@ -30,8 +30,7 @@ public class CheckInCommand implements ICommand {
             passengerService.travel(passenger);
         } 
         catch (MetroCardNotFoundException | InvalidAmountException | StationNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } 
-    }
-    
+    } 
 }

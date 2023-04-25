@@ -37,8 +37,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("create method should create and return new Station if it's not present in database")
-    public void create_shouldReturnNewStation_IfNotPresent()
-    {
+    public void create_shouldReturnNewStation_IfNotPresent() {
         //Arrange
         Station station = new Station("CENTRAL");
         Station expectedStation = new Station("1", "CENTRAL");
@@ -56,8 +55,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("create method should return the existing Station if it's already present in database")
-    public void create_shouldReturnExistingStation_IfAlreadyPresent()
-    {
+    public void create_shouldReturnExistingStation_IfAlreadyPresent() {
         //Arrange
         Station expectedStation = new Station("1", "CENTRAL");
         when(stationRepositoryMock.findByName("CENTRAL")).thenReturn(Optional.ofNullable(expectedStation));
@@ -73,8 +71,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("addPassengerToBoardedList method should add the given Passenger to the boardedList of station")
-    public void addPassengerToBoardedList_shouldAddPassengerToBoardedList() throws StationNotFoundException
-    {
+    public void addPassengerToBoardedList_shouldAddPassengerToBoardedList() throws StationNotFoundException {
         //Arrange
         int expectedCount = 1;
         MetroCard metroCard = new MetroCard("1", "MC1", 400);
@@ -94,8 +91,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("addPassengerToBoardedList method should throw StationNotFoundException if the Station is not found")
-    public void addPassengerToBoardedList_shouldThrowStationNotFoundException()
-    {
+    public void addPassengerToBoardedList_shouldThrowStationNotFoundException() {
         //Arrange
         MetroCard metroCard = new MetroCard("1", "MC1", 400);
         Passenger passenger = new Passenger("1", metroCard, PassengerType.ADULT, "CENTRAL");
@@ -108,8 +104,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("collectTravelCharge method should add the given travelCharge to the travelChargeCollection of station")
-    public void collectTravelCharge_shouldAddTravelCharge_toTravelChargeCollection() throws StationNotFoundException
-    {
+    public void collectTravelCharge_shouldAddTravelCharge_toTravelChargeCollection() throws StationNotFoundException {
         //Arrange
         int expectedTravelCharge = 200;
         MetroCard metroCard = new MetroCard("1", "MC1", 400);
@@ -128,8 +123,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("collectServiceFee method should add the serviceFee to the serviceFeeCollection of station")
-    public void collectServiceFee_shouldAddServiceFee_toServiceFeeCollection() throws StationNotFoundException
-    {
+    public void collectServiceFee_shouldAddServiceFee_toServiceFeeCollection() throws StationNotFoundException {
         //Arrange
         int expectedServiceFee = 3;
         MetroCard metroCard = new MetroCard("1", "MC1", 50);
@@ -148,8 +142,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getAllStations method should return all Stations sorted in descending order of their station names")
-    public void getAllStations_shouldReturnAllStations()
-    {
+    public void getAllStations_shouldReturnAllStations() {
         //Arrange 
         Station station1 = new Station("1", "CENTRAL");
         Station station2 = new Station("2", "AIRPORT");
@@ -167,8 +160,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getTravelCharge method should return the travelCharge for the given passenger with journeyType - SINGLE")
-    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeSingle() throws StationNotFoundException
-    {
+    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeSingle() throws StationNotFoundException {
         //Arrange
         int expectedTravelCharge = 200;
         MetroCard metroCard = new MetroCard("1", "MC1", 600);
@@ -184,8 +176,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getTravelCharge method should return the travelCharge for the given passenger with journeyType - RETURN and add the discount to the discountCollection of station")
-    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeReturn() throws StationNotFoundException
-    {
+    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeReturn() throws StationNotFoundException {
         //Arrange
         int expectedTravelCharge = 100;
         int expectedDiscount = 100;
@@ -208,8 +199,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getCollectionSummary method should return the CollectionSummary of the given station")
-    public void getCollectionSummary_shouldReturnCollectionSummary_givenStation()
-    {
+    public void getCollectionSummary_shouldReturnCollectionSummary_givenStation() {
         //Arrange
         CollectionSummary expectedCollectionSummary = new CollectionSummary("CENTRAL", 403, 50);
         Station station = new Station("1", "CENTRAL");
@@ -226,8 +216,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getPassengerSummary method should return the PassengerSummary of the given station")
-    public void getPassengerSummary_shouldReturnPassengerSummary_givenStation()
-    {
+    public void getPassengerSummary_shouldReturnPassengerSummary_givenStation() {
         //Arrange
         MetroCard metroCard1 = new MetroCard("1", "MC1", 600);
         Passenger passenger1 = new Passenger("1", metroCard1, PassengerType.SENIOR_CITIZEN, "CENTRAL");

@@ -36,16 +36,14 @@ public class MetroCardServiceImplTest {
     private MetroCardServiceImpl metroCardServiceImpl;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         metroCard = new MetroCard("1", "MC1", 100);
         passenger = new Passenger("1", metroCard, PassengerType.KID, "CENTRAL");
     }
 
     @Test
     @DisplayName("create method should create and return new MetroCard if it's not present in database")
-    public void create_shouldReturnNewMetroCard_IfNotPresent()
-    {
+    public void create_shouldReturnNewMetroCard_IfNotPresent() {
         //Arrange
         MetroCard expectedMetroCard = new MetroCard("1", "MC1", 100);
         when(metroCardRepositoryMock.findByCardNumber("MC1")).thenReturn(Optional.empty());
@@ -62,8 +60,7 @@ public class MetroCardServiceImplTest {
 
     @Test
     @DisplayName("create method should return the existing MetroCard if it's already present in database")
-    public void create_shouldReturnExistingMetroCard_IfAlreadyPresent()
-    {
+    public void create_shouldReturnExistingMetroCard_IfAlreadyPresent() {
         //Arrange 
         MetroCard expectedMetroCard = new MetroCard("1", "MC1", 100);
         when(metroCardRepositoryMock.findByCardNumber("MC1")).thenReturn(Optional.ofNullable(expectedMetroCard));
@@ -79,8 +76,7 @@ public class MetroCardServiceImplTest {
 
     @Test
     @DisplayName("recharge method should recharge the MetroCard given travel charge")
-    public void recharge_shouldRechargeMetroCard_givenTravelCharge() throws InvalidAmountException, StationNotFoundException
-    {
+    public void recharge_shouldRechargeMetroCard_givenTravelCharge() throws InvalidAmountException, StationNotFoundException {
         //Arrange
         int expectedBalance = 200;
 
@@ -95,8 +91,7 @@ public class MetroCardServiceImplTest {
 
     @Test
     @DisplayName("makePayment method should make payment given travel charge")
-    public void makePayment_shouldMakePayment_givenTravelCharge() throws InvalidAmountException, StationNotFoundException
-    {
+    public void makePayment_shouldMakePayment_givenTravelCharge() throws InvalidAmountException, StationNotFoundException {
         //Arrange
         int expectedBalance = 0;
 

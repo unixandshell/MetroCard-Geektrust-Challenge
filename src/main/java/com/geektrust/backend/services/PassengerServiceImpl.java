@@ -11,10 +11,10 @@ import com.geektrust.backend.repositories.MetroCardRepository;
 import com.geektrust.backend.repositories.PassengerRepository;
 
 public class PassengerServiceImpl implements PassengerService {
-    private StationService stationService;
-    private MetroCardService metroCardService;
-    private MetroCardRepository metroCardRepository;
-    private PassengerRepository passengerRepository;
+    private final StationService stationService;
+    private final MetroCardService metroCardService;
+    private final MetroCardRepository metroCardRepository;
+    private final PassengerRepository passengerRepository;
 
     public PassengerServiceImpl(StationService stationService, MetroCardService metroCardService, MetroCardRepository metroCardRepository, PassengerRepository passengerRepository) {
         this.stationService = stationService;
@@ -26,7 +26,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public Passenger create(String cardNumber, PassengerType passengerType,
             String boardingStation) throws MetroCardNotFoundException {
-        MetroCard metroCard = metroCardRepository.findByCardNumber(cardNumber).orElseThrow(() -> new MetroCardNotFoundException());
+        MetroCard metroCard = metroCardRepository.findByCardNumber(cardNumber).orElseThrow(() -> new MetroCardNotFoundException("MetroCard with cardNumber: " + cardNumber + " not found!"));
         Optional<Passenger> maybePassenger = passengerRepository.findByMetroCard(metroCard);
 
         if(maybePassenger.isPresent()) {
