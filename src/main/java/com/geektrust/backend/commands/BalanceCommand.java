@@ -12,8 +12,11 @@ public class BalanceCommand implements ICommand {
 
     @Override
     public void execute(List<String> tokens) {
-        String cardNumber = tokens.get(1);
-        int balance = Integer.valueOf(tokens.get(2));
+        final int CARD_NUMBER_INDEX = 1;
+        final int BALANCE_INDEX = 2;
+
+        String cardNumber = tokens.get(CARD_NUMBER_INDEX);
+        int balance = Integer.valueOf(tokens.get(BALANCE_INDEX));
         metroCardService.create(cardNumber, balance);
     } 
 }

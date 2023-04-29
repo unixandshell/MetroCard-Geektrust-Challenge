@@ -20,9 +20,13 @@ public class CheckInCommand implements ICommand {
 
     @Override
     public void execute(List<String> tokens) {
-        String cardNumber = tokens.get(1);
-        PassengerType passengerType = PassengerType.valueOf(tokens.get(2)) ;
-        String stationName = tokens.get(3);
+        final int CARD_NUMBER_INDEX = 1;
+        final int PASSENGER_TYPE_INDEX = 2;
+        final int STATION_NAME_INDEX = 3;
+
+        String cardNumber = tokens.get(CARD_NUMBER_INDEX);
+        PassengerType passengerType = PassengerType.valueOf(tokens.get(PASSENGER_TYPE_INDEX)) ;
+        String stationName = tokens.get(STATION_NAME_INDEX);
 
         try {
             Passenger passenger = passengerService.create(cardNumber, passengerType, stationName);

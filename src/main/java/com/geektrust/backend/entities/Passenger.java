@@ -6,7 +6,6 @@ public class Passenger {
     private final PassengerType passengerType;
     private String boardingStation;
     private int journeyTypeCode; // 0 indicates SINGLE, 1 indicates RETURN, -1 indicates NOT_STARTED
-    private static final int TOTAL_STATION_COUNT = 2;
 
     public Passenger(Passenger passenger) {
         this(passenger.id, passenger.metroCard, passenger.passengerType, passenger.boardingStation);
@@ -51,7 +50,9 @@ public class Passenger {
 
     // This method will update the journeyTypeCode to either 0 or 1 depending on the current value
     public void updateJourneyTypeCode() {
-        this.journeyTypeCode = (this.journeyTypeCode + 1) % TOTAL_STATION_COUNT;
+        final int INCREMENT = 1;
+        final int TOTAL_STATION_COUNT = 2;
+        this.journeyTypeCode = (this.journeyTypeCode + INCREMENT) % TOTAL_STATION_COUNT;
     }
 
     @Override

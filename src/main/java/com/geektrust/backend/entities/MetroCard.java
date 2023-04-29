@@ -6,6 +6,7 @@ public class MetroCard {
     private String id;
     private final String cardNumber;
     private int balance;
+    private static final int MIN_AMOUNT = 0;
 
     public MetroCard(String id, String cardNumber, int balance) {
         this(cardNumber, balance);
@@ -47,12 +48,12 @@ public class MetroCard {
     }
 
     private void validateAmountForCredit(int amount) throws InvalidAmountException {
-        if (amount <= 0)
+        if (amount <= MIN_AMOUNT)
             throw new InvalidAmountException("Amount: " + amount + " is invalid. Please provide a valid amount!");
     }
 
     private void validateAmountForDebit(int amount) throws InvalidAmountException {
-        if ((amount <= 0) || (amount > this.balance))
+        if ((amount <= MIN_AMOUNT) || (amount > this.balance))
             throw new InvalidAmountException("Amount: " + amount + " is invalid. Please provide a valid amount!");
     }
 
