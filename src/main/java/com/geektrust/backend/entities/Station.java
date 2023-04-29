@@ -92,13 +92,7 @@ public class Station implements Comparable<Station> {
             return false;
 
         Station other = (Station) obj;
-        if(this.id == null) {
-            if(other.id != null)
-                return false;
-            else if(this.name.equals(other.name))
-                return true;
-        }
-        else if((this.id.equals(other.id)) && (this.name.equals(other.name)))
+        if(this.name.equals(other.name))
             return true;
             
         return false;

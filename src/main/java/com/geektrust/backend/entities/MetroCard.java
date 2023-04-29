@@ -77,13 +77,7 @@ public class MetroCard {
             return false;
         
         MetroCard other = (MetroCard) obj;
-        if(this.id == null) {
-            if(other.id != null)
-                return false;
-            else if((this.cardNumber.equals(other.cardNumber)) && (this.balance == other.balance))
-                return true;
-        }
-        else if((this.id.equals(other.id)) && (this.cardNumber.equals(other.cardNumber)) && (this.balance == other.balance))
+        if((this.cardNumber.equals(other.cardNumber)) && (this.balance == other.balance))
             return true;
         
         return false;

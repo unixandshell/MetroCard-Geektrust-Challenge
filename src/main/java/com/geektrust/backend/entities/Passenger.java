@@ -76,13 +76,7 @@ public class Passenger {
             return false;
 
         Passenger other = (Passenger) obj;
-        if(this.id == null) {
-            if(other.id != null)
-                return false;
-            else if((this.metroCard.equals(other.metroCard)) && (this.passengerType.equals(other.passengerType)) && (this.boardingStation.equals(other.boardingStation)))
-                return true;
-        }
-        else if((this.id.equals(other.id)) && (this.metroCard.equals(other.metroCard)) && (this.passengerType.equals(other.passengerType)) && (this.boardingStation.equals(other.boardingStation)))
+        if((this.metroCard.equals(other.metroCard)) && (this.passengerType.equals(other.passengerType)) && (this.boardingStation.equals(other.boardingStation)))
             return true;
 
         return false;
