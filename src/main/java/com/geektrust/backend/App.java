@@ -13,6 +13,7 @@ public class App {
 	public static void main(String[] args) {
         final int INPUT_FILE_INDEX = 0;
         final int COMMAND_NAME_INDEX = 0;
+        final String DELIMITER = " ";
 
 		List<String> commandLineArgs = new LinkedList<>(Arrays.asList(args));
 		ApplicationConfig applicationConfig = new ApplicationConfig();
@@ -24,7 +25,7 @@ public class App {
             reader = new BufferedReader(new FileReader(inputFile));
             String line = reader.readLine();
             while (line != null) {
-                List<String> tokens = Arrays.asList(line.split(" "));
+                List<String> tokens = Arrays.asList(line.split(DELIMITER));
                 commandInvoker.executeCommand(tokens.get(COMMAND_NAME_INDEX), tokens);
                 line = reader.readLine();
             }

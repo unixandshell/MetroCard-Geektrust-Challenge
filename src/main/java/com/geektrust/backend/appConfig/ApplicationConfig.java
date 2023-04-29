@@ -33,9 +33,13 @@ public class ApplicationConfig {
     private final CommandInvoker commandInvoker = new CommandInvoker();
 
     public CommandInvoker getCommandInvoker() {
-        commandInvoker.register("BALANCE", balanceCommand);
-        commandInvoker.register("CHECK_IN", checkInCommand);
-        commandInvoker.register("PRINT_SUMMARY", printSummaryCommand);
+        final String COMMAND_BALANCE = "BALANCE";
+        final String COMMAND_CHECK_IN = "CHECK_IN";
+        final String COMMAND_PRINT_SUMMARY = "PRINT_SUMMARY";
+
+        commandInvoker.register(COMMAND_BALANCE, balanceCommand);
+        commandInvoker.register(COMMAND_CHECK_IN, checkInCommand);
+        commandInvoker.register(COMMAND_PRINT_SUMMARY, printSummaryCommand);
         return commandInvoker;
     }
 }

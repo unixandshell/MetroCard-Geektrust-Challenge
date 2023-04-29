@@ -62,8 +62,8 @@ public class StationServiceImpl implements StationService {
     }
 
     private int calculateServiceFee(int rechargeAmount) {
-        final double serviceFeeRate = 0.02;
-        int serviceFee = (int)(serviceFeeRate * rechargeAmount);
+        final double SERVICE_FEE_RATE = 0.02;
+        int serviceFee = (int)(SERVICE_FEE_RATE * rechargeAmount);
         return serviceFee;
     }
 
@@ -129,6 +129,7 @@ public class StationServiceImpl implements StationService {
     
     private Map<PassengerType, Integer> getCountPassengerTypeWise(List<Passenger> passengers) {
         Map<PassengerType, Integer> passengerTypeCountMap = new HashMap<>();
+        final int DEFAULT_COUNT = 1;
 
         for(Passenger passenger : passengers)
         {
@@ -140,7 +141,7 @@ public class StationServiceImpl implements StationService {
                 passengerTypeCountMap.put(passengerType, count);
             }
             else {
-                passengerTypeCountMap.put(passengerType, 1);
+                passengerTypeCountMap.put(passengerType, DEFAULT_COUNT);
             }
         }
         return passengerTypeCountMap;
@@ -155,8 +156,8 @@ public class StationServiceImpl implements StationService {
     }
 
     private int getRevisedTravelCharge(int travelCharge) {
-        final double discountRate = 0.5;
-        int revisedTravelCharge = (int)(discountRate * travelCharge);
+        final double DISCOUNT_RATE = 0.5;
+        int revisedTravelCharge = (int)(DISCOUNT_RATE * travelCharge);
         return revisedTravelCharge;
     }
 
