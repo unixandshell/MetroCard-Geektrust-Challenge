@@ -20,16 +20,24 @@ public class PrintSummaryCommand implements ICommand {
 
         for(Station station : stations)
         {
-            CollectionSummary collectionSummary = stationService.getCollectionSummary(station);
-            PassengerSummary passengerSummary = stationService.getPassengerSummary(station);
-            List<PassengerTypeCount> passengerTypeCounts = passengerSummary.getPassengerTypeCounts();
-
-            System.out.println("TOTAL_COLLECTION " + collectionSummary.getStationName() + " " + collectionSummary.getTotalCollection() + " " + collectionSummary.getDiscountCollection());
-            System.out.println("PASSENGER_TYPE_SUMMARY");
-
-            for(PassengerTypeCount passengerTypeCount : passengerTypeCounts)
-                System.out.println(passengerTypeCount.getPassengerType() + " " + passengerTypeCount.getCount());
+            printCollectionSummary(station);
+            printPassengerSummary(station);
         }
         
+    }
+
+    private void printCollectionSummary(Station station) {
+        CollectionSummary collectionSummary = stationService.getCollectionSummary(station);
+        System.out.println("TOTAL_COLLECTION " + collectionSummary.getStationName() + " " + collectionSummary.getTotalCollection() + " " + collectionSummary.getDiscountCollection());
+    }
+
+    private void printPassengerSummary(Station station) {
+        PassengerSummary passengerSummary = stationService.getPassengerSummary(station);
+        List<PassengerTypeCount> passengerTypeCounts = passengerSummary.getPassengerTypeCounts();
+
+        System.out.println("PASSENGER_TYPE_SUMMARY");
+
+        for(PassengerTypeCount passengerTypeCount : passengerTypeCounts)
+            System.out.println(passengerTypeCount.getPassengerType() + " " + passengerTypeCount.getCount());
     }
 }
