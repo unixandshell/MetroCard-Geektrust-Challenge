@@ -34,14 +34,8 @@ public class StationRepositoryImpl implements StationRepository {
 
     @Override
     public Optional<Station> findByName(String name) {
-        List<Station> stationList = stationMap.values().stream().collect(Collectors.toList());
-
-        for(Station station : stationList)
-        {
-            if(station.getName().equals(name))
-                return Optional.ofNullable(station);
-        }
-        return Optional.ofNullable(null);
+        Optional<Station> maybeStation = stationMap.values().stream().filter(station -> station.getName().equals(name)).findFirst();
+        return maybeStation;
     }
 
     @Override

@@ -1,10 +1,8 @@
 package com.geektrust.backend.repositories;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 
@@ -35,13 +33,7 @@ public class PassengerRepositoryImpl implements PassengerRepository {
 
     @Override
     public Optional<Passenger> findByMetroCard(MetroCard metroCard) {
-        List<Passenger> passengerList = passengerMap.values().stream().collect(Collectors.toList());
-
-        for(Passenger passenger : passengerList)
-        {
-            if(passenger.getMetroCard().equals(metroCard))
-                return Optional.ofNullable(passenger);
-        }
-        return Optional.ofNullable(null);
+        Optional<Passenger> maybePassenger = passengerMap.values().stream().filter(passenger -> passenger.getMetroCard().equals(metroCard)).findFirst();
+        return maybePassenger;
     }
 }

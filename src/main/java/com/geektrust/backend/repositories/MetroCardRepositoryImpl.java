@@ -1,10 +1,8 @@
 package com.geektrust.backend.repositories;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import com.geektrust.backend.entities.MetroCard;
 
 public class MetroCardRepositoryImpl implements MetroCardRepository {
@@ -34,13 +32,7 @@ public class MetroCardRepositoryImpl implements MetroCardRepository {
 
     @Override
     public Optional<MetroCard> findByCardNumber(String cardNumber) {
-        List<MetroCard> metroCardList = metroCardMap.values().stream().collect(Collectors.toList());
-
-        for(MetroCard metroCard : metroCardList)
-        {
-            if(metroCard.getCardNumber().equals(cardNumber))
-                return Optional.ofNullable(metroCard);
-        }
-        return Optional.ofNullable(null);
+        Optional<MetroCard> maybeMetroCard = metroCardMap.values().stream().filter(metroCard -> metroCard.getCardNumber().equals(cardNumber)).findFirst();
+        return maybeMetroCard;
     }
 }

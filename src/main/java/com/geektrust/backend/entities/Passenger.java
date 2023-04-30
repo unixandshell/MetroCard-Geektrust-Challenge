@@ -50,9 +50,9 @@ public class Passenger {
 
     // This method will update the journeyTypeCode to either 0 or 1 depending on the current value
     public void updateJourneyTypeCode() {
-        final int INCREMENT = 1;
+        final int INCREMENT_VALUE = 1;
         final int TOTAL_STATION_COUNT = 2;
-        this.journeyTypeCode = (this.journeyTypeCode + INCREMENT) % TOTAL_STATION_COUNT;
+        this.journeyTypeCode = (this.journeyTypeCode + INCREMENT_VALUE) % TOTAL_STATION_COUNT;
     }
 
     @Override
