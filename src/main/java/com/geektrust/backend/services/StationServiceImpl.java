@@ -1,12 +1,11 @@
 package com.geektrust.backend.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import com.geektrust.backend.dtos.CollectionSummary;
 import com.geektrust.backend.dtos.PassengerSummary;
 import com.geektrust.backend.dtos.PassengerTypeCount;
@@ -111,38 +110,20 @@ public class StationServiceImpl implements StationService {
     } 
 
     private List<PassengerTypeCount> getPassengerSummaryHelper(Map<PassengerType, Integer> passengerTypeCountMap) {
-        List<PassengerTypeCount> passengerTypeCounts = new ArrayList<>();
-        List<PassengerType> passengerTypes = Arrays.asList(PassengerType.values());
-
-        for(PassengerType passengerType : passengerTypes)
-        {
-            if(passengerTypeCountMap.containsKey(passengerType))
-            {
-                int count = passengerTypeCountMap.get(passengerType);
-                PassengerTypeCount passengerTypeCount = new PassengerTypeCount(passengerType, count);
-                passengerTypeCounts.add(passengerTypeCount);
-            }
-        }
-        Collections.sort(passengerTypeCounts);
+        List<PassengerTypeCount> passengerTypeCounts = passengerTypeCountMap.entrySet().stream().map(entry -> new PassengerTypeCount(entry.getKey(), entry.getValue())).sorted().collect(Collectors.toList());
         return passengerTypeCounts;
     }
     
     private Map<PassengerType, Integer> getCountPassengerTypeWise(List<Passenger> passengers) {
         Map<PassengerType, Integer> passengerTypeCountMap = new HashMap<>();
-        final int DEFAULT_COUNT = 1;
+        final int DEFAULT_COUNT = 0;
 
         for(Passenger passenger : passengers)
         {
             PassengerType passengerType = passenger.getPassengerType();
-
-            if(passengerTypeCountMap.containsKey(passengerType)) {
-                int count = passengerTypeCountMap.get(passengerType);
-                count++;
-                passengerTypeCountMap.put(passengerType, count);
-            }
-            else {
-                passengerTypeCountMap.put(passengerType, DEFAULT_COUNT);
-            }
+            int count = passengerTypeCountMap.getOrDefault(passengerType, DEFAULT_COUNT);
+            count++;
+            passengerTypeCountMap.put(passengerType, count);
         }
         return passengerTypeCountMap;
     }
