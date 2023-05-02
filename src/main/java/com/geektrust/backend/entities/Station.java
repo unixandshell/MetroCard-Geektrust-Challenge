@@ -27,22 +27,22 @@ public class Station implements Comparable<Station> {
         this.discountCollection = 0;
     }
 
-    public void addTravelCharge(int travelCharge) throws InvalidAmountException {
+    public void addTravelCharge(int travelCharge) {
         validateAmount(travelCharge);
         this.travelChargeCollection += travelCharge;
     }
 
-    public void addServiceFee(int serviceFee) throws InvalidAmountException {
+    public void addServiceFee(int serviceFee) {
         validateAmount(serviceFee);
         this.serviceFeeCollection += serviceFee;
     }
 
-    public void addDiscount(int discount) throws InvalidAmountException {
+    public void addDiscount(int discount) {
         validateAmount(discount);
         this.discountCollection += discount;
     }
 
-    public void addPassenger(Passenger passenger) throws InvalidPassengerException {
+    public void addPassenger(Passenger passenger) {
         validatePassenger(passenger);
         this.boardedPassengers.add(passenger);
     }
@@ -75,12 +75,12 @@ public class Station implements Comparable<Station> {
         return this.travelChargeCollection + this.serviceFeeCollection;
     }
     
-    private void validateAmount(int amount) throws InvalidAmountException {
+    private void validateAmount(int amount) {
         if (amount <= MIN_AMOUNT)
             throw new InvalidAmountException();
     }
 
-    private void validatePassenger(Passenger passenger) throws InvalidPassengerException {
+    private void validatePassenger(Passenger passenger) {
         if (passenger == null)
             throw new InvalidPassengerException();
     }

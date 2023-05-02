@@ -4,11 +4,7 @@ import java.util.Optional;
 import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.entities.PassengerType;
-import com.geektrust.backend.exceptions.InvalidAmountException;
-import com.geektrust.backend.exceptions.InvalidPassengerException;
-import com.geektrust.backend.exceptions.InvalidStationNameException;
 import com.geektrust.backend.exceptions.MetroCardNotFoundException;
-import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.MetroCardRepository;
 import com.geektrust.backend.repositories.PassengerRepository;
 
@@ -26,8 +22,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger create(String cardNumber, PassengerType passengerType,
-            String boardingStation) throws MetroCardNotFoundException, InvalidStationNameException {
+    public Passenger create(String cardNumber, PassengerType passengerType, String boardingStation) {
         MetroCard metroCard = metroCardRepository.findByCardNumber(cardNumber).orElseThrow(() -> new MetroCardNotFoundException());
         Optional<Passenger> maybePassenger = passengerRepository.findByMetroCard(metroCard);
 
@@ -43,7 +38,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public void travel(Passenger passenger) throws InvalidAmountException, StationNotFoundException, InvalidPassengerException {
+    public void travel(Passenger passenger) {
         MetroCard metroCard = passenger.getMetroCard();
         passenger.updateJourneyTypeCode();
         int travelCharge = stationService.getTravelCharge(passenger);

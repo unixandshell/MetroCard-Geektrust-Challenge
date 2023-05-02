@@ -9,7 +9,7 @@ public class MetroCardTest {
 
     @Test
     @DisplayName("addAmount method should add the given amount to the balance of MetroCard")
-    public void addAmount_shouldAddAmount_toMetroCard() throws InvalidAmountException {
+    public void addAmount_shouldAddAmount_toMetroCard() {
         //Arrange
         int expectedBalance = 200;
         MetroCard metroCard = new MetroCard("MC1", 100);
@@ -24,7 +24,7 @@ public class MetroCardTest {
 
     @Test
     @DisplayName("deductAmount method should deduct the given amount from the balance of MetroCard")
-    public void deductAmount_shouldDeductAmount_fromMetroCard() throws InvalidAmountException {
+    public void deductAmount_shouldDeductAmount_fromMetroCard() {
         //Arrange
         int expectedBalance = 100;
         MetroCard metroCard = new MetroCard("MC1", 200);

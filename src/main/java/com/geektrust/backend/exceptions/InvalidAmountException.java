@@ -1,8 +1,6 @@
 package com.geektrust.backend.exceptions;
 
-import java.io.IOException;
-
-public class InvalidAmountException extends IOException {
+public class InvalidAmountException extends RuntimeException {
     public InvalidAmountException(String message) {
         super(message);
     }

@@ -46,7 +46,7 @@ public class Passenger {
         return this.journeyTypeCode;
     }
 
-    public void setBoardingStation(String boardingStation) throws InvalidStationNameException {
+    public void setBoardingStation(String boardingStation) {
         validateStationName(boardingStation);
         this.boardingStation = boardingStation;
     }
@@ -58,7 +58,7 @@ public class Passenger {
         this.journeyTypeCode = (this.journeyTypeCode + INCREMENT_VALUE) % TOTAL_STATION_COUNT;
     }
 
-    private void validateStationName(String stationName) throws InvalidStationNameException {
+    private void validateStationName(String stationName) {
         if(stationName == null)
             throw new InvalidStationNameException();
     }

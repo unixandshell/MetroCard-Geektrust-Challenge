@@ -38,7 +38,7 @@ public class CommandInvokerTest {
 
     @Test
     @DisplayName("executeCommand method Should Execute Command Given CommandName and List of tokens")
-    public void executeCommand_shouldExecuteCommand_givenNameAndTokens() throws NoSuchCommandException {
+    public void executeCommand_shouldExecuteCommand_givenNameAndTokens() {
         //Act
         commandInvoker.executeCommand("BALANCE", new ArrayList<String>());
         commandInvoker.executeCommand("CHECK_IN", new ArrayList<String>());

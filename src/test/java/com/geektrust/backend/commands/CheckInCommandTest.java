@@ -15,9 +15,6 @@ import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.entities.PassengerType;
 import com.geektrust.backend.entities.Station;
-import com.geektrust.backend.exceptions.InvalidAmountException;
-import com.geektrust.backend.exceptions.InvalidPassengerException;
-import com.geektrust.backend.exceptions.InvalidStationNameException;
 import com.geektrust.backend.exceptions.MetroCardNotFoundException;
 import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.services.PassengerService;
@@ -53,7 +50,7 @@ public class CheckInCommandTest {
 
     @Test
     @DisplayName("execute method of CheckInCommand should create a new Passenger, Station and deduct the appropriate amount of travel charge from the MetroCard of the passenger given cardNumber, passengerType and fromStation")
-    public void execute_shouldCreatePassengerAndStation_andDeductAmountFromMetroCard() throws MetroCardNotFoundException, InvalidAmountException, StationNotFoundException, InvalidStationNameException, InvalidPassengerException {
+    public void execute_shouldCreatePassengerAndStation_andDeductAmountFromMetroCard() {
         //Arrange
         MetroCard metroCard = new MetroCard("1", "MC1", 400);
         Passenger passenger = new Passenger("1", metroCard, PassengerType.ADULT, "CENTRAL");
@@ -73,7 +70,7 @@ public class CheckInCommandTest {
 
     @Test
     @DisplayName("execute method of CheckInCommand should print error message to console if MetroCard with given cardNumber is not found")
-    public void execute_shouldPrintErrorMessage_IfMetroCardNotFound() throws InvalidAmountException, StationNotFoundException, MetroCardNotFoundException, InvalidStationNameException, InvalidPassengerException {
+    public void execute_shouldPrintErrorMessage_IfMetroCardNotFound() {
         //Arrange
         String expectedOutput = "MetroCard with cardNumber: MC10 not found!";
         List<String> tokens = new ArrayList<>(Arrays.asList("CHECK_IN", "MC10", "ADULT", "AIRPORT"));
@@ -92,7 +89,7 @@ public class CheckInCommandTest {
 
     @Test
     @DisplayName("execute method of CheckInCommand should print error message to console if Station with given name is not found")
-    public void execute_shouldPrintErrorMessage_IfStationNotFound() throws InvalidAmountException, StationNotFoundException, MetroCardNotFoundException, InvalidStationNameException, InvalidPassengerException {
+    public void execute_shouldPrintErrorMessage_IfStationNotFound() {
         //Arrange
         MetroCard metroCard = new MetroCard("2", "MC2", 200);
         Passenger passenger = new Passenger("2", metroCard, PassengerType.KID, "RANDOM_NAME");

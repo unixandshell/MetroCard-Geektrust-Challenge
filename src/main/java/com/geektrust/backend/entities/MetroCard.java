@@ -30,12 +30,12 @@ public class MetroCard {
         return this.balance;
     }
 
-    public void addAmount(int amount) throws InvalidAmountException {
+    public void addAmount(int amount) {
         validateAmountForCredit(amount);
         this.balance += amount;
     }
 
-    public void deductAmount(int amount) throws InvalidAmountException {
+    public void deductAmount(int amount) {
         validateAmountForDebit(amount);
         this.balance -= amount;
     }
@@ -47,12 +47,12 @@ public class MetroCard {
             return false;
     }
 
-    private void validateAmountForCredit(int amount) throws InvalidAmountException {
+    private void validateAmountForCredit(int amount) {
         if (amount <= MIN_AMOUNT)
             throw new InvalidAmountException();
     }
 
-    private void validateAmountForDebit(int amount) throws InvalidAmountException {
+    private void validateAmountForDebit(int amount) {
         if ((amount <= MIN_AMOUNT) || (amount > this.balance))
             throw new InvalidAmountException();
     }

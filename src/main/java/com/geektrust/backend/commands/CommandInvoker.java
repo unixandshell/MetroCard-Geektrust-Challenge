@@ -16,7 +16,7 @@ public class CommandInvoker {
         return commandMap.get(commandName);
     }
 
-    public void executeCommand(String commandName, List<String> tokens) throws NoSuchCommandException {
+    public void executeCommand(String commandName, List<String> tokens) {
         ICommand command = get(commandName);
         if(command == null) {
             throw new NoSuchCommandException();

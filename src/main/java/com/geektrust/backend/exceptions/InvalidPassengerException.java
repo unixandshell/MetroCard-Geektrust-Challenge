@@ -1,8 +1,6 @@
 package com.geektrust.backend.exceptions;
 
-import java.io.IOException;
-
-public class InvalidPassengerException extends IOException {
+public class InvalidPassengerException extends RuntimeException {
     public InvalidPassengerException(String message) {
         super(message);
     }

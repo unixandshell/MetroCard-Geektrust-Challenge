@@ -14,8 +14,6 @@ import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.entities.PassengerType;
 import com.geektrust.backend.entities.Station;
 import com.geektrust.backend.entities.TravelCharge;
-import com.geektrust.backend.exceptions.InvalidAmountException;
-import com.geektrust.backend.exceptions.InvalidPassengerException;
 import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.StationRepository;
 
@@ -41,21 +39,21 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public void addPassengerToBoardedList(Passenger passenger) throws StationNotFoundException, InvalidPassengerException {
+    public void addPassengerToBoardedList(Passenger passenger) {
         String stationName = passenger.getBoardingStation();
         Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
         station.addPassenger(new Passenger(passenger));
     }
 
     @Override
-    public void collectTravelCharge(Passenger passenger, int travelCharge) throws StationNotFoundException, InvalidAmountException {
+    public void collectTravelCharge(Passenger passenger, int travelCharge) {
         String stationName = passenger.getBoardingStation();
         Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
         station.addTravelCharge(travelCharge);
     }
 
     @Override
-    public void collectServiceFee(Passenger passenger, int rechargeAmount) throws StationNotFoundException, InvalidAmountException {
+    public void collectServiceFee(Passenger passenger, int rechargeAmount) {
         String stationName = passenger.getBoardingStation();
         Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
         int serviceFee = calculateServiceFee(rechargeAmount);
@@ -76,7 +74,7 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public int getTravelCharge(Passenger passenger) throws StationNotFoundException, InvalidAmountException {
+    public int getTravelCharge(Passenger passenger) {
         String passengerType = passenger.getPassengerType().toString();
         int travelCharge = TravelCharge.valueOf(passengerType).getCharge();
 
@@ -144,7 +142,7 @@ public class StationServiceImpl implements StationService {
         return revisedTravelCharge;
     }
 
-    private void collectDiscount(Passenger passenger, int discount) throws StationNotFoundException, InvalidAmountException {
+    private void collectDiscount(Passenger passenger, int discount) {
         String stationName = passenger.getBoardingStation();
         Station station = stationRepository.findByName(stationName).orElseThrow(() -> new StationNotFoundException());
         station.addDiscount(discount);

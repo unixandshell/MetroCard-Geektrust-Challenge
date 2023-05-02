@@ -1,8 +1,6 @@
 package com.geektrust.backend.exceptions;
 
-import java.io.IOException;
-
-public class MetroCardNotFoundException extends IOException {
+public class MetroCardNotFoundException extends RuntimeException {
     public MetroCardNotFoundException(String message) {
         super(message);
     }

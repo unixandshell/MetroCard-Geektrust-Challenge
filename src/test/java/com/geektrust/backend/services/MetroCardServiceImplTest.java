@@ -9,8 +9,6 @@ import java.util.Optional;
 import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.entities.PassengerType;
-import com.geektrust.backend.exceptions.InvalidAmountException;
-import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.MetroCardRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,7 +74,7 @@ public class MetroCardServiceImplTest {
 
     @Test
     @DisplayName("recharge method should recharge the MetroCard given travel charge")
-    public void recharge_shouldRechargeMetroCard_givenTravelCharge() throws InvalidAmountException, StationNotFoundException {
+    public void recharge_shouldRechargeMetroCard_givenTravelCharge() {
         //Arrange
         int expectedBalance = 200;
 
@@ -91,7 +89,7 @@ public class MetroCardServiceImplTest {
 
     @Test
     @DisplayName("makePayment method should make payment given travel charge")
-    public void makePayment_shouldMakePayment_givenTravelCharge() throws InvalidAmountException, StationNotFoundException {
+    public void makePayment_shouldMakePayment_givenTravelCharge() {
         //Arrange
         int expectedBalance = 0;
 

@@ -1,8 +1,6 @@
 package com.geektrust.backend.exceptions;
 
-import java.io.IOException;
-
-public class StationNotFoundException extends IOException {
+public class StationNotFoundException extends RuntimeException {
     public StationNotFoundException(String message) {
         super(message);
     }

@@ -1,8 +1,6 @@
 package com.geektrust.backend.exceptions;
 
-import java.io.IOException;
-
-public class InvalidStationNameException extends IOException {
+public class InvalidStationNameException extends RuntimeException {
     public InvalidStationNameException(String message) {
         super(message);
     }

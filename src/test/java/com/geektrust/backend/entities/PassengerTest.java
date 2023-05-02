@@ -1,6 +1,5 @@
 package com.geektrust.backend.entities;
 
-import com.geektrust.backend.exceptions.InvalidStationNameException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +15,7 @@ public class PassengerTest {
 
     @Test
     @DisplayName("setBoardingStation method should set the boardingStation to the given value")
-    public void setBoardingStation() throws InvalidStationNameException {
+    public void setBoardingStation() {
         //Arrange
         String expectedBoardingStation = "AIRPORT";
         Passenger passenger = new Passenger(metroCard, PassengerType.ADULT, "CENTRAL");

@@ -1,8 +1,6 @@
 package com.geektrust.backend.exceptions;
 
-import java.io.IOException;
-
-public class PassengerNotFoundException extends IOException {
+public class PassengerNotFoundException extends RuntimeException {
     public PassengerNotFoundException(String message) {
         super(message);
     }

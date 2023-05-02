@@ -3,8 +3,6 @@ package com.geektrust.backend.services;
 import java.util.Optional;
 import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
-import com.geektrust.backend.exceptions.InvalidAmountException;
-import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.MetroCardRepository;
 
 public class MetroCardServiceImpl implements MetroCardService {
@@ -31,7 +29,7 @@ public class MetroCardServiceImpl implements MetroCardService {
     }
 
     @Override
-    public void recharge(MetroCard metroCard, int travelCharge, Passenger passenger) throws InvalidAmountException, StationNotFoundException {
+    public void recharge(MetroCard metroCard, int travelCharge, Passenger passenger) {
         int balance = metroCard.getBalance();
         int rechargeAmount = travelCharge - balance;
         metroCard.addAmount(rechargeAmount);
@@ -39,7 +37,7 @@ public class MetroCardServiceImpl implements MetroCardService {
     }
 
     @Override
-    public void makePayment(MetroCard metroCard, int travelCharge, Passenger passenger) throws InvalidAmountException, StationNotFoundException {
+    public void makePayment(MetroCard metroCard, int travelCharge, Passenger passenger) {
         metroCard.deductAmount(travelCharge);
         stationService.collectTravelCharge(passenger, travelCharge);
     }  
