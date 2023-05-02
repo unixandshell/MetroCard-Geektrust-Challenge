@@ -54,12 +54,4 @@ public class PassengerTypeCount implements Comparable<PassengerTypeCount> {
         
         return false;
     }
-
-    @Override
-    public String toString() {
-        return "PassengerTypeCount {" +
-                "passengerType=" + passengerType +
-                ", count=" + count +
-                '}';
-    }
 }

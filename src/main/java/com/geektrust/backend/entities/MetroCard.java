@@ -49,12 +49,12 @@ public class MetroCard {
 
     private void validateAmountForCredit(int amount) throws InvalidAmountException {
         if (amount <= MIN_AMOUNT)
-            throw new InvalidAmountException("Amount: " + amount + " is invalid. Please provide a valid amount!");
+            throw new InvalidAmountException();
     }
 
     private void validateAmountForDebit(int amount) throws InvalidAmountException {
         if ((amount <= MIN_AMOUNT) || (amount > this.balance))
-            throw new InvalidAmountException("Amount: " + amount + " is invalid. Please provide a valid amount!");
+            throw new InvalidAmountException();
     }
 
     @Override
@@ -81,14 +81,5 @@ public class MetroCard {
             return true;
         
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "MetroCard {" +
-                "id='" + id + '\'' +
-                ", cardNumber='" + cardNumber + '\'' +
-                ", balance=" + balance +
-                '}';
     }
 }

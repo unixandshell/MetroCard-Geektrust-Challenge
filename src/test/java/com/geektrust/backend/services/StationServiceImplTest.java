@@ -16,6 +16,8 @@ import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.entities.PassengerType;
 import com.geektrust.backend.entities.Station;
+import com.geektrust.backend.exceptions.InvalidAmountException;
+import com.geektrust.backend.exceptions.InvalidPassengerException;
 import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.StationRepository;
 import org.junit.jupiter.api.Assertions;
@@ -71,7 +73,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("addPassengerToBoardedList method should add the given Passenger to the boardedList of station")
-    public void addPassengerToBoardedList_shouldAddPassengerToBoardedList() throws StationNotFoundException {
+    public void addPassengerToBoardedList_shouldAddPassengerToBoardedList() throws StationNotFoundException, InvalidPassengerException {
         //Arrange
         int expectedCount = 1;
         MetroCard metroCard = new MetroCard("1", "MC1", 400);
@@ -104,7 +106,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("collectTravelCharge method should add the given travelCharge to the travelChargeCollection of station")
-    public void collectTravelCharge_shouldAddTravelCharge_toTravelChargeCollection() throws StationNotFoundException {
+    public void collectTravelCharge_shouldAddTravelCharge_toTravelChargeCollection() throws StationNotFoundException, InvalidAmountException {
         //Arrange
         int expectedTravelCharge = 200;
         MetroCard metroCard = new MetroCard("1", "MC1", 400);
@@ -123,7 +125,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("collectServiceFee method should add the serviceFee to the serviceFeeCollection of station")
-    public void collectServiceFee_shouldAddServiceFee_toServiceFeeCollection() throws StationNotFoundException {
+    public void collectServiceFee_shouldAddServiceFee_toServiceFeeCollection() throws StationNotFoundException, InvalidAmountException {
         //Arrange
         int expectedServiceFee = 3;
         MetroCard metroCard = new MetroCard("1", "MC1", 50);
@@ -160,7 +162,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getTravelCharge method should return the travelCharge for the given passenger with journeyType - SINGLE")
-    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeSingle() throws StationNotFoundException {
+    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeSingle() throws StationNotFoundException, InvalidAmountException {
         //Arrange
         int expectedTravelCharge = 200;
         MetroCard metroCard = new MetroCard("1", "MC1", 600);
@@ -176,7 +178,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getTravelCharge method should return the travelCharge for the given passenger with journeyType - RETURN and add the discount to the discountCollection of station")
-    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeReturn() throws StationNotFoundException {
+    public void getTravelCharge_shouldReturnTravelCharge_GivenPassenger_withJourneyTypeReturn() throws StationNotFoundException, InvalidAmountException {
         //Arrange
         int expectedTravelCharge = 100;
         int expectedDiscount = 100;
@@ -199,7 +201,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getCollectionSummary method should return the CollectionSummary of the given station")
-    public void getCollectionSummary_shouldReturnCollectionSummary_givenStation() {
+    public void getCollectionSummary_shouldReturnCollectionSummary_givenStation() throws InvalidAmountException {
         //Arrange
         CollectionSummary expectedCollectionSummary = new CollectionSummary("CENTRAL", 403, 50);
         Station station = new Station("1", "CENTRAL");
@@ -216,7 +218,7 @@ public class StationServiceImplTest {
 
     @Test
     @DisplayName("getPassengerSummary method should return the PassengerSummary of the given station")
-    public void getPassengerSummary_shouldReturnPassengerSummary_givenStation() {
+    public void getPassengerSummary_shouldReturnPassengerSummary_givenStation() throws InvalidPassengerException {
         //Arrange
         MetroCard metroCard1 = new MetroCard("1", "MC1", 600);
         Passenger passenger1 = new Passenger("1", metroCard1, PassengerType.SENIOR_CITIZEN, "CENTRAL");

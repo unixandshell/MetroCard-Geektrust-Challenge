@@ -5,6 +5,8 @@ import com.geektrust.backend.entities.MetroCard;
 import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.entities.PassengerType;
 import com.geektrust.backend.exceptions.InvalidAmountException;
+import com.geektrust.backend.exceptions.InvalidPassengerException;
+import com.geektrust.backend.exceptions.InvalidStationNameException;
 import com.geektrust.backend.exceptions.MetroCardNotFoundException;
 import com.geektrust.backend.exceptions.StationNotFoundException;
 import com.geektrust.backend.repositories.MetroCardRepository;
@@ -25,8 +27,8 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger create(String cardNumber, PassengerType passengerType,
-            String boardingStation) throws MetroCardNotFoundException {
-        MetroCard metroCard = metroCardRepository.findByCardNumber(cardNumber).orElseThrow(() -> new MetroCardNotFoundException("MetroCard with cardNumber: " + cardNumber + " not found!"));
+            String boardingStation) throws MetroCardNotFoundException, InvalidStationNameException {
+        MetroCard metroCard = metroCardRepository.findByCardNumber(cardNumber).orElseThrow(() -> new MetroCardNotFoundException());
         Optional<Passenger> maybePassenger = passengerRepository.findByMetroCard(metroCard);
 
         if(maybePassenger.isPresent()) {
@@ -41,7 +43,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public void travel(Passenger passenger) throws InvalidAmountException, StationNotFoundException {
+    public void travel(Passenger passenger) throws InvalidAmountException, StationNotFoundException, InvalidPassengerException {
         MetroCard metroCard = passenger.getMetroCard();
         passenger.updateJourneyTypeCode();
         int travelCharge = stationService.getTravelCharge(passenger);

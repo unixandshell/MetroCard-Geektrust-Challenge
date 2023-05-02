@@ -1,5 +1,7 @@
 package com.geektrust.backend.entities;
 
+import com.geektrust.backend.exceptions.InvalidStationNameException;
+
 public class Passenger {
     private String id;
     private final MetroCard metroCard;
@@ -44,7 +46,8 @@ public class Passenger {
         return this.journeyTypeCode;
     }
 
-    public void setBoardingStation(String boardingStation) {
+    public void setBoardingStation(String boardingStation) throws InvalidStationNameException {
+        validateStationName(boardingStation);
         this.boardingStation = boardingStation;
     }
 
@@ -53,6 +56,11 @@ public class Passenger {
         final int INCREMENT_VALUE = 1;
         final int TOTAL_STATION_COUNT = 2;
         this.journeyTypeCode = (this.journeyTypeCode + INCREMENT_VALUE) % TOTAL_STATION_COUNT;
+    }
+
+    private void validateStationName(String stationName) throws InvalidStationNameException {
+        if(stationName == null)
+            throw new InvalidStationNameException();
     }
 
     @Override
@@ -80,12 +88,5 @@ public class Passenger {
             return true;
 
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Passenger {" + "id='" + id + '\'' + ", metroCard=" + metroCard + ", passengerType="
-                + passengerType + ", boardingStation='" + boardingStation + '\''
-                + ", journeyTypeCode=" + journeyTypeCode + '}';
     }
 }

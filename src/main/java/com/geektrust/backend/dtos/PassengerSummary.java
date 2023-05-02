@@ -37,11 +37,4 @@ public class PassengerSummary {
 
         return false;
     }
-
-    @Override
-    public String toString() {
-        return "PassengerSummary {" +
-                "passengerTypeCounts=" + passengerTypeCounts +
-                '}';
-    }
 }

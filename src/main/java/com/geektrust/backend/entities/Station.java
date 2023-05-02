@@ -2,14 +2,17 @@ package com.geektrust.backend.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.geektrust.backend.exceptions.InvalidAmountException;
+import com.geektrust.backend.exceptions.InvalidPassengerException;
 
 public class Station implements Comparable<Station> {
     private String id;
     private final String name;
-    private final List<Passenger> boardedPassengers; //contains list of passengers boarded from the station
+    private final List<Passenger> boardedPassengers;
     private int travelChargeCollection;
     private int serviceFeeCollection;
     private int discountCollection;
+    private static final int MIN_AMOUNT = 0;
 
     public Station(String id, String name) {
         this(name);
@@ -24,19 +27,23 @@ public class Station implements Comparable<Station> {
         this.discountCollection = 0;
     }
 
-    public void addTravelCharge(int travelCharge) {
+    public void addTravelCharge(int travelCharge) throws InvalidAmountException {
+        validateAmount(travelCharge);
         this.travelChargeCollection += travelCharge;
     }
 
-    public void addServiceFee(int serviceFee) {
+    public void addServiceFee(int serviceFee) throws InvalidAmountException {
+        validateAmount(serviceFee);
         this.serviceFeeCollection += serviceFee;
     }
 
-    public void addDiscount(int discount) {
+    public void addDiscount(int discount) throws InvalidAmountException {
+        validateAmount(discount);
         this.discountCollection += discount;
     }
 
-    public void addPassenger(Passenger passenger) {
+    public void addPassenger(Passenger passenger) throws InvalidPassengerException {
+        validatePassenger(passenger);
         this.boardedPassengers.add(passenger);
     }
 
@@ -67,6 +74,16 @@ public class Station implements Comparable<Station> {
     public int getTotalCollection() {
         return this.travelChargeCollection + this.serviceFeeCollection;
     }
+    
+    private void validateAmount(int amount) throws InvalidAmountException {
+        if (amount <= MIN_AMOUNT)
+            throw new InvalidAmountException();
+    }
+
+    private void validatePassenger(Passenger passenger) throws InvalidPassengerException {
+        if (passenger == null)
+            throw new InvalidPassengerException();
+    }
 
     @Override
     public int compareTo(Station other) {
@@ -96,17 +113,5 @@ public class Station implements Comparable<Station> {
             return true;
             
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Station {" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", boardedPassengers=" + boardedPassengers +
-                ", travelChargeCollection=" + travelChargeCollection +
-                ", serviceFeeCollection=" + serviceFeeCollection +
-                ", discountCollection=" + discountCollection +
-                '}';
     }
 }

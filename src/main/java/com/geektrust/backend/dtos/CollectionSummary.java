@@ -48,13 +48,4 @@ public class CollectionSummary {
     
         return false;
     }
-
-    @Override
-    public String toString() {
-        return "CollectionSummary {" +
-                "stationName='" + stationName + '\'' +
-                ", totalCollection=" + totalCollection +
-                ", discountCollection=" + discountCollection +
-                '}';
-    }
 }
