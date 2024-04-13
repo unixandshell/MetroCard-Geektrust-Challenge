@@ -1,3 +1,7 @@
+# Problem Statement
+
+You can find the problem statement here - [MetroCard](https://www.geektrust.com/challenge/metro-card)
+
 # Result
 
 ![metroCard_geektrust](https://github.com/unixandshell/Personal-Archive/blob/main/images/Geektrust_metro_card.jpeg)
